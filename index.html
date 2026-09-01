@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><!-- EDIT: PAGE TITLE -->Case File // Free Download</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d0e;
+    --panel:#17181a;
+    --panel-line:#2a2d2e;
+    --cream:#e8dcc8;
+    --cream-dim:#a89f8c;
+    --red:#a31621;
+    --red-bright:#c81e2c;
+    --amber:#d4a017;
+    --muted:#8a8d8f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top, rgba(163,22,33,0.08), transparent 60%),
+      var(--bg);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:24px 16px 60px;
+  }
+  .page{width:100%;max-width:460px;}
+
+  /* Countdown strip */
+  .countdown-bar{
+    background:var(--red);
+    color:#fff;
+    font-family:'Special Elite',monospace;
+    font-size:12px;
+    letter-spacing:1px;
+    text-align:center;
+    padding:9px 10px;
+    border-radius:6px;
+    margin-bottom:18px;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+  }
+  #countdown{font-weight:700;}
+
+  /* Header / eyebrow */
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-family:'Special Elite',monospace;
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--amber);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .badge{
+    border:1px solid var(--amber);
+    padding:3px 8px;
+    border-radius:3px;
+    color:var(--amber);
+  }
+
+  h1{
+    font-family:'Playfair Display',serif;
+    font-weight:900;
+    font-size:clamp(30px,7vw,40px);
+    line-height:1.08;
+    color:var(--cream);
+    margin-bottom:8px;
+  }
+  h1 span{color:var(--red-bright);}
+
+  .subhead{
+    color:var(--cream-dim);
+    font-size:14.5px;
+    line-height:1.55;
+    margin-bottom:22px;
+  }
+
+  /* Evidence photo frame */
+  .evidence-frame{
+    position:relative;
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:10px;
+    padding:26px 20px 22px;
+    margin-bottom:20px;
+  }
+  .evidence-frame::before{
+    content:"EXHIBIT A";
+    position:absolute;
+    top:-11px;
+    left:20px;
+    background:var(--bg);
+    padding:0 8px;
+    font-family:'Special Elite',monospace;
+    font-size:10px;
+    letter-spacing:2px;
+    color:var(--muted);
+  }
+  .cover-wrap{
+    position:relative;
+    width:180px;
+    margin:0 auto 18px;
+  }
+  .tape{
+    position:absolute;
+    width:70px;
+    height:22px;
+    background:rgba(212,160,23,0.85);
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%) rotate(-3deg);
+    box-shadow:0 2px 6px rgba(0,0,0,0.4);
+  }
+  /* EDIT: replace this placeholder box with your <img src="your-cover.jpg" alt="Book cover"> */
+  .cover-placeholder{
+    width:100%;
+    aspect-ratio:2/3;
+    background:
+      repeating-linear-gradient(45deg, #1f2022, #1f2022 10px, #232426 10px, #232426 20px);
+    border:2px dashed var(--muted);
+    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    padding:14px;
+    box-shadow:0 10px 24px rgba(0,0,0,0.5);
+  }
+
+  .checklist{list-style:none;}
+  .checklist li{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    font-size:13.5px;
+    color:var(--cream-dim);
+    padding:7px 0;
+    border-bottom:1px solid var(--panel-line);
+  }
+  .checklist li:last-child{border-bottom:none;}
+  .checklist .mark{color:var(--amber);font-weight:700;}
+  .checklist b{color:var(--cream);}
+
+  /* Status / price card */
+  .status-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:14px;
+  }
+  .status-left .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:#3fbf5f;display:inline-block;margin-right:6px;
+  }
+  .status-left .label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+  .status-left .value{font-size:13.5px;color:var(--cream);margin-top:3px;}
+  .status-right{text-align:right;}
+  .status-right .old{
+    text-decoration:line-through;color:var(--muted);font-size:12px;display:block;
+  }
+  .status-right .new{color:#3fbf5f;font-weight:700;font-size:18px;}
+
+  /* Progress */
+  .progress-wrap{margin-bottom:22px;}
+  .progress-labels{
+    display:flex;justify-content:space-between;
+    font-family:'Special Elite',monospace;
+    font-size:11px;color:var(--amber);margin-bottom:6px;letter-spacing:0.5px;
+  }
+  .progress-track{
+    height:8px;background:var(--panel-line);border-radius:5px;overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    /* EDIT: set this width to reflect a real, accurate percentage */
+    width:82%;
+    background:linear-gradient(90deg, var(--amber), var(--red-bright));
+  }
+
+  /* Steps */
+  .steps{list-style:none;margin-bottom:22px;counter-reset:step;}
+  .steps li{
+    display:flex;gap:12px;align-items:flex-start;
+    font-size:13.5px;color:var(--cream-dim);padding:8px 0;
+  }
+  .steps .num{
+    counter-increment:step;
+    min-width:24px;height:24px;border-radius:50%;
+    border:1px solid var(--amber);color:var(--amber);
+    font-family:'Special Elite',monospace;font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps .num::before{content:counter(step);}
+  .steps b{color:var(--cream);}
+
+  /* CTA */
+  .cta-btn{
+    width:100%;
+    background:linear-gradient(180deg, var(--red-bright), var(--red));
+    color:#fff;
+    border:none;
+    border-radius:9px;
+    padding:17px 18px;
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:0.4px;
+    cursor:pointer;
+    box-shadow:0 10px 26px rgba(163,22,33,0.35);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta-btn:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(163,22,33,0.45);}
+  .cta-btn:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+  .disclaimer{
+    text-align:center;
+    font-size:11px;
+    color:var(--muted);
+    margin-top:12px;
+    line-height:1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta-btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="countdown-bar">
+    OFFER CLOSES IN <span id="countdown">--:--:--</span>
+  </div>
+
+  <div class="eyebrow">
+    <span>Case File // Digital Edition</span>
+    <span class="badge">Unclassified</span>
+  </div>
+
+  <!-- EDIT: replace with your actual book title -->
+  <h1>The Calamity Club:A NOVEL <span>By Kathryn Stockett</span></h1>
+
+  <!-- EDIT: replace with your own 1-2 line description of the book -->
+  <p class="subhead">
+    “So immersive, exciting, and downright fabulous, you never want it to end.”—Oprah Daily
+
+#1 NEW YORK TIMES BESTSELLER * The multimillion-copy-selling author of The Help returns with a bold, big-hearted novel about a group of unbreakable women, fighting for what’s rightfully theirs—and the power of friendship to change everything..
+  </p>
+
+  <div class="evidence-frame">
+    <div class="cover-wrap">
+      <div class="tape"></div>
+      <!-- EDIT: replace this entire div with:
+           <img src="your-cover.jpg" alt="Book cover" style="width:100%;border-radius:4px;box-shadow:0 10px 24px rgba(0,0,0,0.5);">
+      -->
+      <img src="https://i.postimg.cc/YqMqrHkQ/cover.png" alt="Book cover" style="width:100%;border-radius:4px;box-shadow:0 10px 24px rgba(0,0,0,0.5);">
+    </div>
+
+    <ul class="checklist">
+      <!-- EDIT: adjust these to match your actual file -->
+      <li><span class="mark">✓</span><span><b>Full edition</b> — complete, unabridged text</span></li>
+      <li><span class="mark">✓</span><span><b>ALL FORMAT FILE</b> — PDF-EPUB-MOBI</span></li>
+      <li><span class="mark">✓</span><span><b>Universal compatibility</b> — works on phone, tablet, PC, e-reader</span></li>
+    </ul>
+  </div>
+
+  <div class="status-card">
+    <div class="status-left">
+      <div class="label">File status</div>
+      <div class="value"><span class="dot"></span>Instant access</div>
+    </div>
+    <div class="status-right">
+      <!-- EDIT: since this is public domain, you may prefer to just show "FREE" with no strikethrough price -->
+      <span class="new">FREE</span>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-labels">
+      <!-- EDIT: only use real numbers you can back up, or remove this block entirely -->
+      <span>DOWNLOADS TODAY</span>
+      <span>82% CLAIMED</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill"></div></div>
+  </div>
+
+  <ol class="steps">
+    <li><span class="num"></span><span>Click the button below to start.</span></li>
+    <li><span class="num"></span><span>Complete <b>one quick offer</b> to verify you're human.</span></li>
+    <li><span class="num"></span><span>Your download link unlocks <b>automatically</b>.</span></li>
+  </ol>
+
+  <!-- EDIT: hook your OGAds content locker script to this button.
+       Typical setup: OGAds gives you a JS snippet that locks the page
+       and reveals content / redirects after an offer is completed.
+       Paste that snippet just before </body>, and this button id
+       is what you'll usually trigger it from (id="unlock-btn"). -->
+  <button class="cta-btn" id="unlock-btn">UNLOCK FILE — 1 QUICK STEP</button>
+
+  <p class="disclaimer">
+    Verification required to prevent automated access and keep the file available for real readers.
+  </p>
+
+</div>
+
+<script>
+  // Countdown timer — resets automatically to a fresh 6-hour window
+  // EDIT: change DURATION_MS to whatever offer window you actually want to honor
+  const DURATION_MS = 6 * 60 * 60 * 1000;
+  const STORAGE_KEY = 'caseFileCountdownEnd';
+
+  function getEndTime(){
+    let end = localStorage.getItem(STORAGE_KEY);
+    const now = Date.now();
+    if(!end || parseInt(end,10) < now){
+      end = now + DURATION_MS;
+      localStorage.setItem(STORAGE_KEY, end);
+    }
+    return parseInt(end,10);
+  }
+
+  const endTime = getEndTime();
+  const el = document.getElementById('countdown');
+
+  function tick(){
+    const diff = endTime - Date.now();
+    if(diff <= 0){
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+      return;
+    }
+    const h = String(Math.floor(diff/3600000)).padStart(2,'0');
+    const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    el.textContent = `${h}:${m}:${s}`;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // OGAds content locker — clicking the button sends the visitor
+  // to the locker link, which handles the offer + unlock flow.
+  const OGADS_LOCKER_URL = 'https://appsave.store/cl/i/xplmwl';
+
+  document.getElementById('unlock-btn').addEventListener('click', function(){
+    window.location.href = OGADS_LOCKER_URL;
+  });
+</script>
+</body>
+</html>
